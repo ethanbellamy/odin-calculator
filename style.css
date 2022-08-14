@@ -42,7 +42,7 @@ h1 {
     justify-content: space-between;
 }
 
-.button {
+button {
     color: white;
     background-color: #202020;
     width: 100px;
@@ -51,4 +51,10 @@ h1 {
     justify-content: center;
     align-items: center;
     border-radius: 5px;
+    font-size: 80px;
+    border: none;
+}
+
+.number:active, #cancel:active, #equal:active, .operator:focus {
+    background-color: #505050;
 }

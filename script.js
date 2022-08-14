@@ -82,7 +82,7 @@ function parseInput(e) {
     }
 
     //Equals selected
-    else if (e.target.id == '=') {
+    else if (e.target.id == 'equal') {
         //Check there are two operands before calculating sum
         if (!(firstOperand == null) && !(displayContent == null)) {
             secondOperand = displayContent;
@@ -97,7 +97,7 @@ function parseInput(e) {
     }
 
     //Cancel selected
-    else if (e.target.id == 'C') {
+    else if (e.target.id == 'cancel') {
         displayContent = '';
         display.textContent = displayContent;
 
