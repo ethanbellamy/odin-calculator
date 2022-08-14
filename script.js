@@ -40,12 +40,19 @@ let firstOperand = null;
 let operator = null;
 let secondOperand = null;
 let sum = null;
+let operatorSelected = false;
 
 buttons.addEventListener('click', parseInput);
 
 function parseInput(e) {
     //Number selected
     if (e.target.classList.contains('number') && displayContent.length < 9) {
+        //Clear display after operator selected
+        if (operatorSelected == true) {
+            display.textContent = displayContent;
+            operatorSelected = false;
+        }
+        
         displayContent += e.target.id;
         display.textContent = displayContent;
     }
@@ -72,12 +79,12 @@ function parseInput(e) {
             else {
                 secondOperand = displayContent;
                 firstOperand = operate(firstOperand, operator, secondOperand);
+                display.textContent = firstOperand;
                 secondOperand = null;
             }
 
-            //Clear display
+            operatorSelected = true;
             displayContent = '';
-            display.textContent = displayContent;
         }
     }
 
