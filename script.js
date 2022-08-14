@@ -41,6 +41,7 @@ let operator = null;
 let secondOperand = null;
 let sum = null;
 let operatorSelected = false;
+let sumCalculated = false;
 
 buttons.addEventListener('click', parseInput);
 
@@ -52,6 +53,11 @@ function parseInput(e) {
             display.textContent = displayContent;
             operatorSelected = false;
         }
+
+        //Start new calculation after equals selected
+        if (sumCalculated == true) {
+            resetCalculation();
+        }
         
         displayContent += e.target.id;
         display.textContent = displayContent;
@@ -60,7 +66,7 @@ function parseInput(e) {
     //Operator selected
     else if (e.target.classList.contains('operator')) {
         //Check whether number is entered into display
-        if (!(displayContent == null)) {
+        if (!(displayContent == '')) {
             operator = e.target.id;
 
             //If this is first number entered
@@ -100,17 +106,26 @@ function parseInput(e) {
 
             displayContent = sum;
             display.textContent = displayContent;
+
+            displayContent = '';
+            sumCalculated = true;
         }
     }
 
     //Cancel selected
     else if (e.target.id == 'cancel') {
-        displayContent = '';
-        display.textContent = displayContent;
-
-        firstOperand = null;
-        operator = null;
-        secondOperand = null;
-        sum = null;
+        resetCalculation();
     }
+}
+
+function resetCalculation() {
+    displayContent = '';
+    display.textContent = displayContent;
+
+    firstOperand = null;
+    operator = null;
+    secondOperand = null;
+    sum = null;
+    operatorSelected = false;
+    sumCalculated = false;
 }
