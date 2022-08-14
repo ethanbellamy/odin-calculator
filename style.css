@@ -11,7 +11,7 @@ h1 {
 
 #calc-container {
     background-color: #404040;
-    width: 500px;
+    width: 520px;
     margin: 0 auto;
     border: 5px solid grey;
     border-radius: 25px;
@@ -26,6 +26,7 @@ h1 {
     align-items: center;
     padding: 0px 10px;
     border-radius: 5px;
+    font-size: 100px;
 }
 
 #button-container {
@@ -33,8 +34,8 @@ h1 {
     flex-direction: column;
     justify-content: space-between;
     margin: 25px;
-    width: 450px;
-    height: 450px;
+    width: 470px;
+    height: 470px;
 }
 
 .button-row {
@@ -45,8 +46,8 @@ h1 {
 button {
     color: white;
     background-color: #202020;
-    width: 100px;
-    height: 100px;
+    width: 110px;
+    height: 110px;
     display: flex;
     justify-content: center;
     align-items: center;

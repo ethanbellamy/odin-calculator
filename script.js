@@ -47,7 +47,7 @@ buttons.addEventListener('click', parseInput);
 
 function parseInput(e) {
     //Number selected
-    if (e.target.classList.contains('number') && displayContent.length < 9) {
+    if (e.target.classList.contains('number') && displayContent.length < 8) {
         //Clear display after operator selected
         if (operatorSelected == true) {
             display.textContent = displayContent;
