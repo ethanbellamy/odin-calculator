@@ -31,3 +31,14 @@ function operate(num1,operator,num2) {
         return divide(num1,num2);
     }
 }
+
+let buttons = document.querySelector('#button-container');
+let display = document.querySelector('#display');
+let displayContent = '';
+
+buttons.addEventListener('click', e => {
+    if (e.target.classList.contains('button') && displayContent.length < 9) {
+        displayContent += e.target.id;
+        display.textContent = displayContent;
+    }
+})
