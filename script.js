@@ -67,25 +67,27 @@ function parseInput(e) {
     else if (e.target.classList.contains('operator')) {
         //Check whether number is entered into display
         if (!(displayContent == '')) {
-            operator = e.target.id;
-
             //If this is first number entered
             if (firstOperand == null) {
                 firstOperand = displayContent;
+                operator = e.target.id;
             }
 
             //If sum is already calculated
             else if (!(sum == null)) {
                 firstOperand = sum;
+                operator = e.target.id;
                 sum = null;
                 secondOperand = null;
             }
 
-            //If first number is already entered, but sum is not calculated yet
+            //If first number is already entered, but sum is not calculated yet,
+            //then calculate previous sum and assign to firstOperand for use in next sum
             else {
                 secondOperand = displayContent;
                 firstOperand = operate(firstOperand, operator, secondOperand);
                 display.textContent = firstOperand;
+                operator = e.target.id;
                 secondOperand = null;
             }
 
