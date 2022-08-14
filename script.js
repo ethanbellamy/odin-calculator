@@ -37,7 +37,7 @@ let display = document.querySelector('#display');
 let displayContent = '';
 
 buttons.addEventListener('click', e => {
-    if (e.target.classList.contains('button') && displayContent.length < 9) {
+    if (e.target.classList.contains('number') && displayContent.length < 9) {
         displayContent += e.target.id;
         display.textContent = displayContent;
     }
