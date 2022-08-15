@@ -10,10 +10,6 @@ let operatorSelected = false;
 let sumCalculated = false;
 let inputKey;
 
-document.addEventListener('keydown', (e) => {
-    console.log(e);
-});
-
 buttons.addEventListener('click', parseInput);
 document.addEventListener('keydown', parseKeyboardInput);
 display.textContent = displayContent;
