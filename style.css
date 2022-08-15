@@ -20,13 +20,13 @@ h1 {
 
 #display {
     background-color: #F5F5F5;
-    height: 100px;
     margin: 25px;
-    display: flex;
-    align-items: center;
+    display: inline-block;
     padding: 0px 10px;
     border-radius: 5px;
-    font-size: 100px;
+    font-size: 80px;
+    word-wrap: break-word;
+    width: 450px;
 }
 
 #button-container {

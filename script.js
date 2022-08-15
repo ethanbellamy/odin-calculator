@@ -1,7 +1,7 @@
 let buttons = document.querySelector('#button-container');
 let display = document.querySelector('#display');
 
-let displayContent = '';
+let displayContent = '0';
 let firstOperand = null;
 let operator = null;
 let secondOperand = null;
@@ -10,6 +10,7 @@ let operatorSelected = false;
 let sumCalculated = false;
 
 buttons.addEventListener('click', parseInput);
+display.textContent = displayContent;
 
 function operate(num1,operator,num2) {
     if (operator == '+') {
@@ -50,21 +51,24 @@ function parseInput(e) {
 }
 
 function numberInput(e) {
-    if (displayContent.length < 8) {
-        //Clear display after operator selected
-        if (operatorSelected == true) {
-            display.textContent = displayContent;
-            operatorSelected = false;
-        }
-
-        //Start new calculation after equals selected
-        if (sumCalculated == true) {
-            resetCalculation();
-        }
-        
-        displayContent += e.target.id;
-        display.textContent = displayContent;        
+    //Clear display after operator selected
+    if (operatorSelected == true) {
+        display.textContent = displayContent;
+        operatorSelected = false;
     }
+
+    //Start new calculation after equals selected
+    if (sumCalculated == true) {
+        resetCalculation();
+    }
+    
+    //If first number entered
+    if (displayContent == '0') {
+        displayContent = '';
+    }
+
+    displayContent += e.target.id;
+    display.textContent = displayContent;
 }
 
 function operatorInput(e) {
@@ -103,7 +107,7 @@ function equalsInput(e) {
     //Check there are two operands before calculating sum
     if (!(firstOperand == null) && !(displayContent == null)) {
         secondOperand = displayContent;
-        sum = operate(firstOperand, operator, secondOperand);
+        sum = roundSum(operate(firstOperand, operator, secondOperand));
 
         firstOperand = null;
         secondOperand = null;
@@ -117,7 +121,7 @@ function equalsInput(e) {
 }
 
 function resetCalculation() {
-    displayContent = '';
+    displayContent = 0;
     display.textContent = displayContent;
 
     firstOperand = null;
@@ -126,4 +130,13 @@ function resetCalculation() {
     sum = null;
     operatorSelected = false;
     sumCalculated = false;
+}
+
+function roundSum(sum) {
+    if (sum.toString().includes('.')) {
+        return +(Math.round(sum + "e+3")  + "e-3");
+    }
+    else {
+        return sum;
+    }
 }
