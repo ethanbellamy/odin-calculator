@@ -1,7 +1,8 @@
 let buttons = document.querySelector('#button-container');
 let display = document.querySelector('#display');
+let previewDisplay = document.querySelector('#preview-display');
 
-let displayContent = '0';
+let displayContent = 0;
 let firstOperand = null;
 let operator = null;
 let secondOperand = null;
@@ -13,6 +14,8 @@ let inputKey;
 buttons.addEventListener('click', parseInput);
 document.addEventListener('keydown', parseKeyboardInput);
 display.textContent = displayContent;
+previewDisplay.textContent = displayContent;
+previewDisplay.style.visibility = 'hidden';
 
 function operate(num1,operator,num2) {
     if (operator == '+') {
@@ -158,6 +161,9 @@ function operatorInput(inputKey) {
             }
         }
 
+        previewDisplay.style.visibility = 'visible';
+        previewDisplay.textContent = `${firstOperand} ${operator}`
+
         operatorSelected = true;
     }        
 }
@@ -168,12 +174,13 @@ function equalsInput() {
         secondOperand = displayContent;
         sum = roundSum(operate(firstOperand, operator, secondOperand));
 
-        firstOperand = null;
-        secondOperand = null;
-
         displayContent = sum;
         display.textContent = displayContent;
+        previewDisplay.style.visibility = 'visible';
+        previewDisplay.textContent = `${firstOperand} ${operator} ${secondOperand} =`;
 
+        firstOperand = null;
+        secondOperand = null;
         sumCalculated = true;
     }
 }
@@ -181,6 +188,8 @@ function equalsInput() {
 function resetCalculation() {
     displayContent = 0;
     display.textContent = displayContent;
+    previewDisplay.textContent = displayContent;
+    previewDisplay.style.visibility = 'hidden';
 
     firstOperand = null;
     operator = null;
