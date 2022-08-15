@@ -16,17 +16,17 @@ h1 {
     border: 5px solid grey;
     border-radius: 25px;
     font-size: 80px;
+    display: flex;
+    flex-direction: column;
 }
 
 #display {
     background-color: #F5F5F5;
     margin: 25px;
-    display: inline-block;
     padding: 0px 10px;
     border-radius: 5px;
     font-size: 80px;
     word-wrap: break-word;
-    width: 450px;
 }
 
 #button-container {
@@ -34,13 +34,13 @@ h1 {
     flex-direction: column;
     justify-content: space-between;
     margin: 25px;
-    width: 470px;
-    height: 470px;
+    gap: 10px;
 }
 
 .button-row {
     display: flex;
     justify-content: space-between;
+    gap: 10px;
 }
 
 button {
@@ -56,6 +56,26 @@ button {
     border: none;
 }
 
-.number:active, #cancel:active, #equal:active, .operator:focus {
+#cancel, #backspace, #negative {
+    font-size: 70px;
+}
+
+#equal {
+    width: 230px;
+}
+
+.number:active, #decimal:active, #negative:active {
     background-color: #505050;
+}
+
+#cancel:active, #backspace:active {
+    background-color: #572424;
+}
+
+.operator:focus {
+    background-color: #555120;
+}
+
+#equal:active {
+    background-color: #202750;
 }
