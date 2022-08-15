@@ -48,6 +48,17 @@ function parseInput(e) {
     else if (e.target.id == 'cancel') {
         resetCalculation();
     }
+
+    //Backspace selected
+    else if (e.target.id == 'backspace') {
+        displayContent = displayContent.slice(0,-1);
+        display.textContent = displayContent;
+    }
+
+    //Negative selected
+    else if (e.target.id == 'negative') {
+        toggleNegative();
+    }
 }
 
 function numberInput(e) {
@@ -143,4 +154,14 @@ function roundSum(sum) {
     else {
         return sum;
     }
+}
+
+function toggleNegative() {
+    if (displayContent.includes('-')) {
+        displayContent = displayContent.replace('-','');
+    }
+    else {
+        displayContent = '-' + displayContent;
+    }
+    display.textContent = displayContent;
 }
