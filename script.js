@@ -119,7 +119,7 @@ function numberInput(inputKey) {
     if (inputKey == '.' && displayContent == '') {
         displayContent = '0';
     }
-    
+
     displayContent += inputKey;
     display.textContent = displayContent;
 }
@@ -199,8 +199,16 @@ function roundSum(sum) {
 }
 
 function removeCharacter() {
-    displayContent = displayContent.slice(0,-1);
-    display.textContent = displayContent;
+    if (operatorSelected == false && sumCalculated == false) {
+        if (displayContent.length > 1) {
+            displayContent = displayContent.slice(0,-1);
+            display.textContent = displayContent;
+        }
+        else {
+            displayContent = '0';
+            display.textContent = displayContent;
+        }
+    }
 }
 
 function toggleNegative() {
