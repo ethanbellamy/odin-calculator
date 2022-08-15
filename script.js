@@ -115,7 +115,6 @@ function equalsInput(e) {
         displayContent = sum;
         display.textContent = displayContent;
 
-        displayContent = '';
         sumCalculated = true;
     }
 }
