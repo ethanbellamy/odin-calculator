@@ -115,6 +115,11 @@ function numberInput(inputKey) {
         displayContent = '';
     }
 
+    //If decimal entered first, add leading 0
+    if (inputKey == '.' && displayContent == '') {
+        displayContent = '0';
+    }
+    
     displayContent += inputKey;
     display.textContent = displayContent;
 }
