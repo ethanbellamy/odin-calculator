@@ -51,6 +51,11 @@ function parseInput(e) {
 }
 
 function numberInput(e) {
+    //Only allow one decimal to be entered
+    if (displayContent.toString().includes('.') && e.target.id == '.') {
+        return;
+    }
+
     //Clear display after operator selected
     if (operatorSelected == true) {
         display.textContent = displayContent;
