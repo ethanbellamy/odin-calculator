@@ -127,7 +127,7 @@ function numberInput(inputKey) {
 
 function operatorInput(inputKey) {
     //Check whether number is entered into display
-    if (!(displayContent == '' || displayContent == 'lol')) {
+    if (!(displayContent == '' || displayContent == 'lol') && operatorSelected == false) {
         //If sum is already calculated
         if (!(sum == null)) {
             firstOperand = sum;
@@ -164,7 +164,7 @@ function operatorInput(inputKey) {
 
 function equalsInput() {
     //Check there are two operands before calculating sum
-    if (!(firstOperand == null) && !(displayContent == null || displayContent == 'lol')) {
+    if (!(firstOperand == null) && !(displayContent == null || displayContent == 'lol') && operatorSelected == false) {
         secondOperand = displayContent;
         sum = roundSum(operate(firstOperand, operator, secondOperand));
 
