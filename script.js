@@ -28,7 +28,12 @@ function operate(num1,operator,num2) {
     }
 
     else if (operator == '/') {
-        return +num1 / +num2;
+        if (num2 == 0 ) {
+            return 'lol';
+        }
+        else {
+            return +num1 / +num2;
+        }
     }
 }
 
@@ -122,10 +127,9 @@ function numberInput(inputKey) {
 
 function operatorInput(inputKey) {
     //Check whether number is entered into display
-    if (!(displayContent == '')) {
+    if (!(displayContent == '' || displayContent == 'lol')) {
         //If sum is already calculated
         if (!(sum == null)) {
-            console.log('second')
             firstOperand = sum;
             operator = inputKey;
             sum = null;
@@ -135,10 +139,8 @@ function operatorInput(inputKey) {
 
         //If this is first number entered
         else if (firstOperand == null) {
-            console.log('first')
             firstOperand = displayContent;
             operator = inputKey;
-            console.log(firstOperand)
         }
 
         //If first number is already entered, but sum is not calculated yet,
@@ -146,9 +148,14 @@ function operatorInput(inputKey) {
         else {
             secondOperand = displayContent;
             firstOperand = operate(firstOperand, operator, secondOperand);
-            display.textContent = firstOperand;
+            displayContent = firstOperand;
+            display.textContent = displayContent;
             operator = inputKey;
             secondOperand = null;
+
+            if (displayContent == 'lol') {
+                sumCalculated = true;
+            }
         }
 
         operatorSelected = true;
@@ -156,10 +163,8 @@ function operatorInput(inputKey) {
 }
 
 function equalsInput() {
-    console.log(firstOperand)
-    console.log(secondOperand)
     //Check there are two operands before calculating sum
-    if (!(firstOperand == null) && !(displayContent == null)) {
+    if (!(firstOperand == null) && !(displayContent == null || displayContent == 'lol')) {
         secondOperand = displayContent;
         sum = roundSum(operate(firstOperand, operator, secondOperand));
 
