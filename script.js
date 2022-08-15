@@ -208,11 +208,13 @@ function removeCharacter() {
 }
 
 function toggleNegative() {
-    if (displayContent.toString().includes('-')) {
-        displayContent = displayContent.replace('-','');
+    if (operatorSelected == false && sumCalculated == false) {
+        if (displayContent.toString().includes('-')) {
+            displayContent = displayContent.replace('-','');
+        }
+        else {
+            displayContent = '-' + displayContent;
+        }
+        display.textContent = displayContent;
     }
-    else {
-        displayContent = '-' + displayContent;
-    }
-    display.textContent = displayContent;
 }
