@@ -100,6 +100,7 @@ function numberInput(inputKey) {
 
     //Clear display after operator selected
     if (operatorSelected == true) {
+        displayContent = '';
         display.textContent = displayContent;
         operatorSelected = false;
     }
@@ -121,18 +122,22 @@ function numberInput(inputKey) {
 function operatorInput(inputKey) {
     //Check whether number is entered into display
     if (!(displayContent == '')) {
-        //If this is first number entered
-        if (firstOperand == null) {
-            firstOperand = displayContent;
-            operator = inputKey;
-        }
-
         //If sum is already calculated
-        else if (!(sum == null)) {
+        if (!(sum == null)) {
+            console.log('second')
             firstOperand = sum;
             operator = inputKey;
             sum = null;
             secondOperand = null;
+            sumCalculated = false;
+        }
+
+        //If this is first number entered
+        else if (firstOperand == null) {
+            console.log('first')
+            firstOperand = displayContent;
+            operator = inputKey;
+            console.log(firstOperand)
         }
 
         //If first number is already entered, but sum is not calculated yet,
@@ -146,11 +151,12 @@ function operatorInput(inputKey) {
         }
 
         operatorSelected = true;
-        displayContent = '';
     }        
 }
 
 function equalsInput() {
+    console.log(firstOperand)
+    console.log(secondOperand)
     //Check there are two operands before calculating sum
     if (!(firstOperand == null) && !(displayContent == null)) {
         secondOperand = displayContent;
