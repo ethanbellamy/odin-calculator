@@ -8,8 +8,14 @@ let secondOperand = null;
 let sum = null;
 let operatorSelected = false;
 let sumCalculated = false;
+let inputKey;
+
+document.addEventListener('keydown', (e) => {
+    console.log(e);
+});
 
 buttons.addEventListener('click', parseInput);
+document.addEventListener('keydown', parseKeyboardInput);
 display.textContent = displayContent;
 
 function operate(num1,operator,num2) {
@@ -31,39 +37,64 @@ function operate(num1,operator,num2) {
 }
 
 function parseInput(e) {
+    inputKey = e.target.id;
+
     if (e.target.classList.contains('number')) {
-        numberInput(e);
+        numberInput(inputKey);
     }
 
     else if (e.target.classList.contains('operator')) {
-        operatorInput(e);
+        operatorInput(inputKey);
     }
 
-    //Equals selected
     else if (e.target.id == 'equal') {
-        equalsInput(e);
+        equalsInput();
     }
 
-    //Cancel selected
     else if (e.target.id == 'cancel') {
         resetCalculation();
     }
 
-    //Backspace selected
     else if (e.target.id == 'backspace') {
-        displayContent = displayContent.slice(0,-1);
-        display.textContent = displayContent;
+        removeCharacter();
     }
 
-    //Negative selected
     else if (e.target.id == 'negative') {
         toggleNegative();
     }
 }
 
-function numberInput(e) {
+function parseKeyboardInput(e) {
+    inputKey = e.key;
+
+    if ((e.key >= 0 && e.key < 10) || e.key == '.') {
+        numberInput(inputKey);
+    }
+
+    else if (e.key == '+' || e.key == '-' || e.key == '*' || e.key == '/') {
+        operatorInput(inputKey);
+    }
+
+    else if (e.key == '=') {
+        equalsInput();
+    }
+
+    else if (e.key == 'Escape') {
+        resetCalculation();
+    }
+
+    else if (e.key == 'Backspace') {
+        removeCharacter();
+    }
+
+    else if (e.key == '#') {
+        toggleNegative();
+    }
+}
+
+function numberInput(inputKey) {
     //Only allow one decimal to be entered
-    if (displayContent.toString().includes('.') && e.target.id == '.') {
+    if (displayContent.toString().includes('.') && inputKey == '.') {
         return;
     }
 
@@ -83,23 +114,23 @@ function numberInput(e) {
         displayContent = '';
     }
 
-    displayContent += e.target.id;
+    displayContent += inputKey;
     display.textContent = displayContent;
 }
 
-function operatorInput(e) {
+function operatorInput(inputKey) {
     //Check whether number is entered into display
     if (!(displayContent == '')) {
         //If this is first number entered
         if (firstOperand == null) {
             firstOperand = displayContent;
-            operator = e.target.id;
+            operator = inputKey;
         }
 
         //If sum is already calculated
         else if (!(sum == null)) {
             firstOperand = sum;
-            operator = e.target.id;
+            operator = inputKey;
             sum = null;
             secondOperand = null;
         }
@@ -110,7 +141,7 @@ function operatorInput(e) {
             secondOperand = displayContent;
             firstOperand = operate(firstOperand, operator, secondOperand);
             display.textContent = firstOperand;
-            operator = e.target.id;
+            operator = inputKey;
             secondOperand = null;
         }
 
@@ -119,7 +150,7 @@ function operatorInput(e) {
     }        
 }
 
-function equalsInput(e) {
+function equalsInput() {
     //Check there are two operands before calculating sum
     if (!(firstOperand == null) && !(displayContent == null)) {
         secondOperand = displayContent;
@@ -156,8 +187,13 @@ function roundSum(sum) {
     }
 }
 
+function removeCharacter() {
+    displayContent = displayContent.slice(0,-1);
+    display.textContent = displayContent;
+}
+
 function toggleNegative() {
-    if (displayContent.includes('-')) {
+    if (displayContent.toString().includes('-')) {
         displayContent = displayContent.replace('-','');
     }
     else {
